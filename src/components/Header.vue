@@ -1,33 +1,39 @@
 <script>
 export default {
   name: "HeroSection",
+  props: {
+    loggedIn: {
+      type: Boolean,
+      required: true,
+    },
+  },
 };
 </script>
 
 <template>
   <div class="hero">
-      <div align="right">
-        <button class="sign-in-button">
-          <img class="icon" src="../assets/icons/profile.svg" />
-          Sign In
-        </button>
+    <div align="right">
+      <button class="sign-in-button">
+        <img class="icon" src="../assets/icons/profile.svg" />
+        Sign In
+      </button>
+    </div>
+    <div class="header">
+      <img src="../assets/logo.svg" alt="Logo" class="logo" />
+      <h1 class="main-title">ODDSPOT</h1>
+      <h2 class="subheader">SPORTS ODDS HUB</h2>
+    </div>
+    <div class="headerItems">
+      <div class="headerItem">
+        <p>REAL-TIME DATA</p>
       </div>
-      <div class="header">
-        <img src="../assets/logo.svg" alt="Logo" class="logo" />
-        <h1 class="main-title">ODDSPOT</h1>
-        <h2 class="subheader">SPORTS ODDS HUB</h2>
+      <div class="headerItem">
+        <p>OVER 100 SPORTS</p>
       </div>
-      <div class="headerItems">
-        <div class="headerItem">
-          <p>REAL-TIME DATA</p>
-        </div>
-        <div class="headerItem">
-          <p>OVER 100 SPORTS</p>
-        </div>
-        <div class="headerItem">
-          <p>ACCURATE ODDS</p>
-        </div>
+      <div class="headerItem">
+        <p>ACCURATE ODDS</p>
       </div>
+    </div>
     <div class="arrow-container">
       <p class="explore-text">Explore Content Below</p>
       <div class="white-arrow"></div>
@@ -73,8 +79,6 @@ p {
   font-weight: 500;
 }
 
-
-
 .heroSpacing {
   height: 64px;
 }
@@ -93,7 +97,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom:0px;
+  margin-bottom: 0px;
 }
 
 .hero {
@@ -121,7 +125,7 @@ p {
 }
 
 .icon {
-  margin-right: 8px;
+  margin-right: 16px;
 }
 
 .header {
@@ -153,65 +157,63 @@ p {
   /* Add additional styles for your subheader if needed */
 }
 
-@media only screen and (max-width: 762px) { 
+@media only screen and (max-width: 762px) {
+  .sign-in-button {
+    padding: 8px;
+    background-color: #20fc8f;
+    color: #fff;
+    border: none;
+    border-radius: 32px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
 
-.sign-in-button {
-  padding: 8px;
-  background-color: #20fc8f;
-  color: #fff;
-  border: none;
-  border-radius: 32px;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
+  .heroSpacing {
+    height: 24px;
+  }
 
-.heroSpacing{
-  height: 24px;
-}
+  .headerItems {
+    display: flex;
+    flex-direction: column;
+  }
 
-.headerItems {
-  display: flex;
-  flex-direction: column;
-}
+  .headerItem {
+    width: 100%;
+    height: 72px;
+    border-radius: 30px;
+    border: 2px solid #20fc8f;
+    background: hsla(60, 3%, 25%, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
 
-.headerItem {
-  width: 100%;
-  height: 72px;
-  border-radius: 30px;
-  border: 2px solid #20fc8f;
-  background: hsla(60, 3%, 25%, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
+  .logo {
+    width: 64px;
+    height: 64px;
+    margin-top: 16px;
+  }
 
-.logo {
-  width: 64px;
-  height: 64px;
-  margin-top: 16px;
-}
+  .main-title {
+    font-family: "Integral CF", sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px;
+  }
 
-.main-title {
-  font-family: "Integral CF", sans-serif;
-  font-size: 40px;
-  font-weight: bold;
-  margin: 10px;
-}
-
-.subheader {
-  font-family: "Integral CF", sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  color: #20fc8f;
-  margin-top: 0px;
-  /* Add additional styles for your subheader if needed */
-}
-
+  .subheader {
+    font-family: "Integral CF", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #20fc8f;
+    margin-top: 0px;
+    /* Add additional styles for your subheader if needed */
+  }
 }
 </style>
