@@ -61,11 +61,14 @@ export default {
 
       <button class="text-button" id="upcoming-games-btn">See All...</button>
     </div>
-    <div class="games-row">      
-      <GameCard v-if="upcomingGames.length > 0" :game="upcomingGames[0]"></GameCard>
+    <div class="games-row" v-if="upcomingGames.length > 0">    
+      <GameCard :game="upcomingGames[0]"></GameCard>
       <GameCard v-if="upcomingGames.length > 1" :game="upcomingGames[1]"></GameCard>
+      <div v-else style="width: 30%;"></div>
       <GameCard v-if="upcomingGames.length > 2" :game="upcomingGames[2]"></GameCard>
+      <div v-else style="width: 30%;"></div>
     </div>
+    <div v-else><h3>No upcoming games...</h3></div>
   </div>
   <div class="leagues">
     <div class="title-row">
@@ -85,9 +88,11 @@ export default {
 </template>
 
 <style>
-.games-row{
+.games-row {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 0px;
 }
 
 .upcoming-games, .leagues, .recent-games{
@@ -110,6 +115,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 16px;
   }
 
 h1{
@@ -129,6 +135,13 @@ h1{
     border: none;
     color: #20fc8f;
     font-size: 16px;
+  }
+
+  .games-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 16px;
   }
 }
 
