@@ -173,6 +173,10 @@ p {
     width: 100%;
   }
 
+  .explore-text{
+    font-size: 16px;
+  }
+
   .heroSpacing {
     height: 24px;
   }

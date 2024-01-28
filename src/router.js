@@ -1,14 +1,11 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '../pages/Home.vue';
-import Leagues from '../pages/Leagues.vue';
-import Login from '../pages/Login.vue';
-import Preferences from '../pages/Preferences.vue';
-import Register from '../pages/Register.vue';
-import Profile from '../pages/Profile.vue';
-import Games from '../pages/Games.vue';
-
-Vue.use(VueRouter);
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from './pages/Home.vue';
+import Leagues from './pages/Leagues.vue';
+import Login from './pages/Login.vue';
+import Preferences from './pages/Preferences.vue';
+import Register from './pages/Register.vue';
+import Profile from './pages/Profile.vue';
+import Games from './pages/Games.vue';
 
 const routes = [
   { path: '/', component: Home },
@@ -20,9 +17,9 @@ const routes = [
   { path: '/leagues/:id', component: Games, props: true },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHistory(), // Use HTML5 history mode
   routes,
-  mode: 'history',
 });
 
 export default router;
