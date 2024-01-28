@@ -1,7 +1,7 @@
 <template>
     <div class="search-container" @click="toggleSearch">
       <div v-if="!isExpanded" class="search-icon">
-        <img src="../assets/icons/search.svg"/>
+        <img class="search" src="../assets/icons/search.svg"/>
       </div>
       <div v-else class="expanded">
       <input
@@ -11,7 +11,7 @@
         ref="searchInput"
         @blur="toggleSearch"
       />
-      <button id="submit-search-btn"><img src="../assets/icons/search.svg"/></button>
+      <button id="submit-search-btn"><img class="search" src="../assets/icons/search.svg"/></button>
     </div>
     </div>
   </template>
@@ -58,8 +58,8 @@
     justify-content: center;
     border: 2px solid #20fc8f;
     border-radius: 50%;
-    width: 64px;
-    height: 64px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     transition: all 0.3s ease;
   }
@@ -70,21 +70,20 @@
     justify-content: center;
   }
 
-  .search-icon>img{
-    width: 32px;
-    height: 32px;
+  .search{
+    width: 16px;
+    height: 16px;
   }
   
   .search-input {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid white;
   outline: none;
   padding: 5px;
   width: 0;
+  color: white;
   transition: width 0.3s ease;
 }
-
 
   .search-container:focus-within {
     width: 400px;
@@ -92,10 +91,9 @@
   }
   
   .search-container:focus-within .search-input {
-    width: 70%;
+    width: 100%;
   }
 
-  
   @media only screen and (max-width: 762px) {
     .search-container {
       display: flex;
@@ -109,10 +107,10 @@
       transition: all 0.3s ease;
     }
 
-    .search-icon>img{
-    width: 12px;
-    height: 12px;
-  }
+    .search{
+      width: 12px;
+      height: 12px;
+    }
   }
   </style>
   

@@ -217,7 +217,6 @@ p {
     font-weight: bold;
     color: #20fc8f;
     margin-top: 0px;
-    /* Add additional styles for your subheader if needed */
   }
 }
 </style>

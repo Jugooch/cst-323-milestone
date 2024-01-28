@@ -22,6 +22,13 @@ h1{
   margin: 0;
 }
 
+h2 {
+    font-family: "Integral CF", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #20fc8f;
+  }
+
 html, body {
   margin: 0;
   padding: 0;
