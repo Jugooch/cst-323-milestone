@@ -1,6 +1,9 @@
 <template>
     <div class="card">
-      <div class="card-header"></div>
+      <div class="card-header">
+        <h3>{{game.sport_title}}</h3>
+        <h4>{{ formattedDate }}</h4>
+      </div>
       <div class="card-body">
         <div class="team">
           <h3 class="game-odds">{{ game.bookmakers[0]?.markets[0]?.outcomes[0]?.price }}</h3>
@@ -26,23 +29,48 @@
         required: true,
       },
     },
+    computed: {
+      formattedDate() {
+            const date = new Date(this.game.commence_time);
+            const optionsDate = { year: '2-digit', month: '2-digit', day: '2-digit' };
+            const optionsTime = { hour: 'numeric', minute: '2-digit', hour12: true };
+            const formattedDate = date.toLocaleDateString('en-US', optionsDate);
+            const formattedTime = date.toLocaleTimeString('en-US', optionsTime);
+            return `${formattedDate} at ${formattedTime}`;
+            },
+    }
   };
   </script>
   
 <style scoped>
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    background-color: #20fc8f;
+    border-radius: 26px 26px 0 0;
+    width: 100%;
+}
 
 .card{
   border: 2px solid #20fc8f;
   border-radius: 30px;
   width: 30%;
-      margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 h3{
     font-family: "Integral CF", sans-serif;
-    font-family: "Inter", sans-serif;
     color: white;
     font-size: 20px;  
+    text-wrap: wrap;
+}
+
+h4 {
+    font-family: "Inter", sans-serif;
+    color: white;
+    font-size: 16px;  
     text-wrap: wrap;
 }
 

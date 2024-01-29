@@ -1,15 +1,19 @@
 <script>
 import HeaderSection from '@/components/HeaderSection.vue';
 import SearchButton from '@/components/SearchButton.vue';
+import LeaguePill from '@/components/LeaguePill.vue'
 import OddsService from '@/services/OddsService'
 import GameCard from '@/components/GameCard.vue';
+import GameScoreCard from '@/components/GameScoreCard.vue';
 
 export default {
   name: 'HomePage',
   components: {
     HeaderSection,
     SearchButton,
-    GameCard
+    GameCard,
+    LeaguePill,
+    GameScoreCard
   },
   data() {
     return {
@@ -58,7 +62,6 @@ export default {
   <div class="upcoming-games">
     <div class="title-row">
       <h1>UPCOMING GAMES</h1>
-
       <button class="text-button" id="upcoming-games-btn">See All...</button>
     </div>
     <div class="games-row" v-if="upcomingGames.length > 0">    
@@ -73,30 +76,57 @@ export default {
   <div class="leagues">
     <div class="title-row">
       <h1>SPORTS LEAGUES</h1>
-      <SearchButton></SearchButton>
+      <div class="title-buttons">
+        <SearchButton></SearchButton>
+        <button class="text-button">See All...</button>
+      </div>
     </div>
-    <div class="leagues-pills"></div>
+    <div v-if="leagues.length>0" class="leagues-pills">
+      <div class="games-row">
+        <LeaguePill :league="leagues[0]"></LeaguePill>
+        <LeaguePill :league="leagues[1]"></LeaguePill>
+        <LeaguePill :league="leagues[2]"></LeaguePill>
+      </div>
+      <div class="games-row">
+        <LeaguePill :league="leagues[3]"></LeaguePill>
+        <LeaguePill :league="leagues[4]"></LeaguePill>
+        <LeaguePill :league="leagues[5]"></LeaguePill>
+      </div>
+    </div>
+    <div v-else><h3>No leagues found...</h3></div>
   </div>
   <div class="recent-scores">
     <div class="title-row">
       <h1>RECENT GAME SCORES</h1>
       <button class="text-button" id="upcoming-games-btn">See More...</button>
+    </div>    
+    <div v-if="recentScores.length>0" class="games-row">
+      <GameScoreCard :game="recentScores[0]"></GameScoreCard>
+      <GameScoreCard v-if="recentScores.length > 1" :game="recentScores[1]"></GameScoreCard>
+      <div v-else style="width: 30%;"></div>
+      <GameScoreCard v-if="recentScores.length > 2" :game="recentScores[2]"></GameScoreCard>
+      <div v-else style="width: 30%;"></div>
     </div>
-    <div class="games-row"></div>
+    <div v-else><h3>No scores found...</h3></div>
   </div>
   </div>
 </template>
 
 <style>
+.title-buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
 .games-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 0px;
 }
 
 .upcoming-games, .leagues, .recent-games{
-  margin-bottom: 32px;
+  margin-bottom: 80px;
 }
 
 #body{
@@ -110,6 +140,13 @@ export default {
   font-size: 20px;
 }
 
+h1{
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "Integral CF", sans-serif;
+}
+
 .title-row{
     width: 100%;
     display: flex;
@@ -118,14 +155,16 @@ export default {
     margin-bottom: 16px;
   }
 
-h1{
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
-  font-family: "Integral CF", sans-serif;
-}
+  .title-row>h1{
+    margin-bottom: 0;
+  }
 
-@media only screen and (max-width: 762px) {
+
+
+@media only screen and (max-width: 950px) {  
+  
+
+
   h1{
     font-size: 24px;
   }
@@ -141,7 +180,15 @@ h1{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-bottom: 16px;
+  }
+
+  .title-row{
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .title-row>h1{
+    margin-bottom: 16px;
   }
 }
 
