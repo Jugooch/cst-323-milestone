@@ -5,6 +5,7 @@ import LeaguePill from '@/components/LeaguePill.vue'
 import OddsService from '@/services/OddsService'
 import GameCard from '@/components/GameCard.vue';
 import GameScoreCard from '@/components/GameScoreCard.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'HomePage',
@@ -13,7 +14,8 @@ export default {
     SearchButton,
     GameCard,
     LeaguePill,
-    GameScoreCard
+    GameScoreCard,
+    Footer
   },
   data() {
     return {
@@ -108,6 +110,7 @@ export default {
     <div v-else><h3>No scores found...</h3></div>
   </div>
   </div>
+  <Footer></Footer>
 </template>
 
 <style>
@@ -156,8 +159,6 @@ h1{
 
 @media only screen and (max-width: 950px) {  
   
-
-
   h1{
     font-size: 24px;
   }
