@@ -76,10 +76,7 @@ export default {
   <div class="leagues">
     <div class="title-row">
       <h1>SPORTS LEAGUES</h1>
-      <div class="title-buttons">
         <SearchButton></SearchButton>
-        <button class="text-button">See All...</button>
-      </div>
     </div>
     <div v-if="leagues.length>0" class="leagues-pills">
       <div class="games-row">
@@ -92,6 +89,7 @@ export default {
         <LeaguePill :league="leagues[4]"></LeaguePill>
         <LeaguePill :league="leagues[5]"></LeaguePill>
       </div>
+      <div align="center"><button class="text-button">See All...</button></div>
     </div>
     <div v-else><h3>No leagues found...</h3></div>
   </div>
@@ -113,11 +111,6 @@ export default {
 </template>
 
 <style>
-.title-buttons{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-}
 
 .games-row {
   display: flex;
@@ -156,7 +149,7 @@ h1{
   }
 
   .title-row>h1{
-    margin-bottom: 0;
+    margin: 0;
   }
 
 
@@ -180,15 +173,6 @@ h1{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  }
-
-  .title-row{
-    flex-direction: column;
-    align-items: start;
-  }
-
-  .title-row>h1{
-    margin-bottom: 16px;
   }
 }
 
