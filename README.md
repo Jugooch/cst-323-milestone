@@ -1,3 +1,6 @@
+# API Repository:
+[OddSpot API](https://github.com/Jugooch/ODDSPOT-API)
+
 # cst-323-milestone
 
 ## Project setup
