@@ -24,6 +24,20 @@ export default {
       recentScores: []
     };
   },
+  computed: {
+    // Define computed properties here, outside the data function
+    loggedInUser() {
+      return this.$store.state.user;
+    },
+    isLoggedIn() {
+      if(this.loggedInUser != null){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+  },
   methods: {
     async fetchLeagues() {
       try {
@@ -59,7 +73,7 @@ export default {
 </script>
 
 <template>
-  <HeaderSection :loggedIn="false"></HeaderSection>
+  <HeaderSection></HeaderSection>
   <div id="body">
   <div class="upcoming-games">
     <div class="title-row">

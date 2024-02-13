@@ -1,11 +1,19 @@
 <script>
 export default {
   name: "HeroSection",
-  props: {
-    loggedIn: {
-      type: Boolean,
-      required: true,
+  computed: {
+    // Define computed properties here, outside the data function
+    loggedInUser() {
+      return this.$store.state.user;
     },
+    loggedIn() {
+      if(this.loggedInUser != null){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
   },
 };
 </script>
@@ -13,10 +21,14 @@ export default {
 <template>
   <div class="hero">
     <div align="right">
-      <button class="sign-in-button">
+      <router-link v-if="!loggedIn" class="sign-in-button" to="/login">
         <img class="icon" src="../assets/icons/profile.svg" />
         Sign In
-      </button>
+      </router-link>
+      <router-link v-else class="sign-in-button" to="/profile">
+        <img class="icon" src="../assets/icons/profile.svg" />
+        {{loggedInUser.name}}
+      </router-link>
     </div>
     <div class="header">
       <img src="../assets/logo.svg" alt="Logo" class="logo" />
@@ -112,6 +124,7 @@ p {
 }
 
 .sign-in-button {
+  width: fit-content;
   padding: 10px 15px;
   background-color: #20fc8f;
   color: #fff;
@@ -122,6 +135,7 @@ p {
   cursor: pointer;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .icon {
@@ -154,7 +168,6 @@ p {
   font-size: 24px;
   font-weight: bold;
   color: #20fc8f;
-  /* Add additional styles for your subheader if needed */
 }
 
 @media only screen and (max-width: 762px) {

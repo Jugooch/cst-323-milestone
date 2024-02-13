@@ -12,7 +12,7 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/profile', component: Profile },
-  { path: '/preferences', component: Preferences },
+  { path: '/profile/preferences', component: Preferences },
   { path: '/leagues', component: Leagues},
   { path: '/leagues/:id', component: Games, props: true },
 ];

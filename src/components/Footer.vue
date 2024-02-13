@@ -1,11 +1,19 @@
 <script>
 export default {
-  name: "FooterSection",
-  props: {
-    loggedIn: {
-      type: Boolean,
-      required: true,
+  name: "FooterSection",  
+  computed: {
+    // Define computed properties here, outside the data function
+    loggedInUser() {
+      return this.$store.state.user;
     },
+    loggedIn() {
+      if(this.loggedInUser != null){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
   },
 };
 </script>
@@ -22,12 +30,18 @@ export default {
       <h3 class="subheader">Sports Leagues</h3>
       <h3 class="subheader">Recent Game Scores</h3>
     </div>
-    <button class="sign-in-button">
-      <img class="icon" src="../assets/icons/profile.svg" />
-      Sign In
-    </button>
+    <router-link v-if="!loggedIn" class="sign-in-button" to="/login">
+        <img class="icon" src="../assets/icons/profile.svg" />
+        Sign In
+      </router-link>
+      <router-link v-else class="sign-in-button" to="/profile">
+        <img class="icon" src="../assets/icons/profile.svg" />
+        {{loggedInUser.name}}
+      </router-link>
   </div>
-  <p align="center" style="margin-left: 64px; margin-right: 64px;">Copyright © 2024 Not Yet, Hopefully Soon. Maybe Some rights reserved</p>
+  <p align="center" style="margin-left: 64px; margin-right: 64px">
+    Copyright © 2024 Not Yet, Hopefully Soon. Maybe Some rights reserved
+  </p>
 </template>
 
 <style scoped>
@@ -37,7 +51,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-right: 64px;
-margin-left: 64px;
+  margin-left: 64px;
+  margin-top: 64px;
 }
 
 p {
@@ -46,16 +61,16 @@ p {
   font-weight: 100;
 }
 
-.links{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin-bottom: 0px;
+.links {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 0px;
 }
 
-.links>h3{
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
+.links > h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
 
 .sign-in-button {
@@ -69,7 +84,8 @@ p {
   cursor: pointer;
   display: flex;
   align-items: center;
-    margin-bottom: 0px;
+  margin-bottom: 0px;
+  text-decoration: none;
 }
 
 .icon {
@@ -82,7 +98,8 @@ p {
   justify-content: center;
   align-items: center;
   color: #fff;
-    margin-bottom: 0px;
+  margin-bottom: 0px;
+  width:fit-content;
 }
 
 .logo {
@@ -105,22 +122,21 @@ p {
 }
 
 @media only screen and (max-width: 950px) {
+  .links {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 32px;
+  }
 
-    .links{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        margin-bottom: 32px;
-    }
-
-    .footer {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        margin-right: 64px;
-        margin-left: 64px;
-    }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 64px;
+    margin-left: 64px;
+  }
 
   .sign-in-button {
     padding: 8px;
@@ -159,7 +175,7 @@ p {
     margin-top: 0px;
   }
 
-  .header{ 
+  .header {
     margin-bottom: 32px;
   }
 }
