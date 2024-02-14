@@ -45,7 +45,6 @@ export default {
   <div class="background">
     <router-link class="back" to="/">
       <img class="back-icon" src="../assets/icons/back.svg" />
-      <!-- Removed the dot from the class name -->
     </router-link>
     <div class="header">
       <img src="../assets/logo.svg" alt="Logo" class="logo" />

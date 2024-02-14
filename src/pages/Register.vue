@@ -1,15 +1,15 @@
 <script>
-import UserService from '../services/UserService';
+import UserService from "../services/UserService";
 
 export default {
-  name: "RegisterPage",  
+  name: "RegisterPage",
   data() {
     return {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
       userService: new UserService(),
     };
   },
@@ -19,18 +19,26 @@ export default {
         alert("Passwords do not match.");
         return;
       }
-      
+
       const newUser = {
         name: `${this.firstName} ${this.lastName}`,
         email_address: this.email,
         password: this.password,
       };
-      
+
       try {
         const response = await this.userService.postUser(newUser);
         console.log("Registration successful", response);
         // Redirect or update state as needed after successful registration
         this.$router.push('/login'); // Redirect to login page
+        
+        //////////////////////////////////////////////////////////////////////////////////////
+        ///This will be for when the gmail account gets unbanned from google
+        //////////////////////////////////////////////////////////////////////////////////////
+        // // Redirect to email confirmation
+        // this.userService.sendCode(newUser.email_address);
+        // this.$router.push({ name: "ConfirmEmail", query: { user: newUser } });
+        //////////////////////////////////////////////////////////////////////////////////////
       } catch (error) {
         console.error("Registration error:", error);
         alert("Registration failed.");
@@ -42,17 +50,37 @@ export default {
 <template>
   <div class="background">
     <router-link class="back" to="/login">
-      <img class=".back-icon" src="../assets/icons/back.svg" />
+      <img class="back-icon" src="../assets/icons/back.svg" />
     </router-link>
     <form @submit.prevent="registerUser">
       <div class="login-form">
         <h2 class="subheader">CREATE YOUR ACCOUNT</h2>
         <div class="input-group">
-          <input v-model="firstName" id="first-name" type="text" placeholder="First Name"/>
-          <input v-model="lastName" id="last-name" type="text" placeholder="Last Name"/>
-          <input v-model="email" id="email" type="text" placeholder="Email"/>
-          <input v-model="password" id="password" type="password" placeholder="Password"/>
-          <input v-model="confirmPassword" id="confirm-password" type="password" placeholder="Confirm Password"/>
+          <input
+            v-model="firstName"
+            id="first-name"
+            type="text"
+            placeholder="First Name"
+          />
+          <input
+            v-model="lastName"
+            id="last-name"
+            type="text"
+            placeholder="Last Name"
+          />
+          <input v-model="email" id="email" type="text" placeholder="Email" />
+          <input
+            v-model="password"
+            id="password"
+            type="password"
+            placeholder="Password"
+          />
+          <input
+            v-model="confirmPassword"
+            id="confirm-password"
+            type="password"
+            placeholder="Confirm Password"
+          />
         </div>
         <div class="accept-terms">
           <button type="submit" class="primary-btn">Sign Up</button>
@@ -62,14 +90,13 @@ export default {
   </div>
 </template>
 <style>
-
 .input-group {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.input-group>input{
+.input-group > input {
   padding: 10px;
   border-radius: 50px;
   border: none;
@@ -147,7 +174,7 @@ export default {
   color: #20fc8f;
 }
 
-.primary-btn{
+.primary-btn {
   background-color: #20fc8f;
   color: white;
   font-weight: bold;
@@ -158,14 +185,14 @@ export default {
   border: none;
 }
 
-.text-btn{
+.text-btn {
   color: #20fc8f;
   background: none;
   border: none;
   text-decoration: none;
 }
 
-p{
+p {
   color: white;
 }
 </style>

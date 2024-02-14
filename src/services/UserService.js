@@ -61,6 +61,37 @@ export default class UserService {
     return response.json();
   }
 
+  async sendCode(email) {
+      const response = await fetch(`${this.apiBaseUrl}/verify`, {
+        method: 'POST',
+        headers: this.headers,
+        body: JSON.stringify({ email }),
+      });
+    
+      if (!response.ok) {
+        throw new Error('Failed to send verification code.');
+      }
+    
+      return response.ok;
+    }
+
+    async verifyCode(email) {
+      const response = await fetch(`${this.apiBaseUrl}/verify?email=${encodeURIComponent(email)}`, {
+        method: 'GET',
+        headers: this.headers,
+      });
+    
+      if (!response.ok) {
+        // Handle non-OK responses, such as 404 NotFound
+        const errorText = await response.text();
+        throw new Error(`Failed to verify code: ${errorText}`);
+      }
+    
+      const code = await response.text();
+      return code;
+    }
+    
+
   // Update an existing user
   async putUser(id, updatedUser) {
     const response = await fetch(`${this.apiBaseUrl}/${id}`, {

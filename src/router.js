@@ -6,11 +6,13 @@ import Preferences from './pages/Preferences.vue';
 import Register from './pages/Register.vue';
 import Profile from './pages/Profile.vue';
 import Games from './pages/Games.vue';
+import ConfirmEmail from './pages/ConfirmEmail.vue';
 
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
+  { path: '/register/confirm', component: ConfirmEmail, props: true },
   { path: '/profile', component: Profile },
   { path: '/profile/preferences', component: Preferences },
   { path: '/leagues', component: Leagues},

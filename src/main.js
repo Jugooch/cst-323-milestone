@@ -17,7 +17,7 @@ const store = createStore({
   },
   actions: {
     loginUser({ commit }, user) {
-      commit('setUser', user); // Use the mutation to update the user state
+      commit('setUser', user);
     }
   }
 });
