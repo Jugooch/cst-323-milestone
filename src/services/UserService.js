@@ -139,4 +139,23 @@ export default class UserService {
     });
     return response.json();
   }
+
+  // Get all specific favorite leagues by id
+  async getFavoriteLeagues(id) {
+    const response = await fetch(`${this.apiBaseUrl}/${id}/favoriteLeagues`, {
+      method: 'GET',
+      headers: this.headers,
+    });
+    return response.json();
+  }
+
+  // get a league by a league id
+  async getLeague(leagueId) {
+    const response = await fetch(`${this.apiBaseUrl}/leagues/${leagueId}`, {
+      method: 'GET',
+      headers: this.headers,
+    });
+    return response.json();
+  }
+
 }
