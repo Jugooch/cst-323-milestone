@@ -12,6 +12,9 @@ export default {
     loggedInUser() {
       return this.$store.state.user;
     },
+    leagues() {
+      return this.fetchLeagues();
+    }
   },
   methods: {
     async logout() {
@@ -29,6 +32,21 @@ export default {
         alert("Deletion failed.");
       }
     },
+    async fetchLeagues() {
+      try{
+        const favoriteLeagues = await this.userService.getFavoriteLeagues(this.loggedInUser.user_id);
+        const leagues = favoriteLeagues.map(async league => {
+          var temp = await this.userService.getLeague(league.league_id);
+          return temp;
+        });
+        console.log("Leagues:", leagues);
+        return leagues;
+      }
+      catch(error){
+        console.error("League fetch error:", error);
+        return [];
+      }
+    }
   },
 };
 </script>
@@ -51,6 +69,15 @@ export default {
   <div class="profile-content">
   <div class="title-row">
     <h1>YOUR LEAGUES</h1>
+    <div v-if="leagues != null">
+      <ul>
+        <li v-for="league in leagues" :key="league.id">{{league.title}}</li>
+      </ul>
+    </div>
+    <div v-else>
+      <p>No Leagues Found</p>
+    </div>
+    
     <button class="outline-btn"><img src="../assets//icons//add.svg"/></button>
   </div>
   </div>
