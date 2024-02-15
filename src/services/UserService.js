@@ -1,4 +1,5 @@
 import User from "../models/UserModel"
+import League from "../models/LeagueModel"
 
 export default class UserService {
   constructor() {
@@ -13,6 +14,7 @@ export default class UserService {
   mapToUserModel(data) {
     return data.map(user => new User(user.user_id, user.name, user.password, user.email_address, user.favorite_leagues));
   }
+  
 
   // Get all users
   async getUsers() {
@@ -155,7 +157,9 @@ export default class UserService {
       method: 'GET',
       headers: this.headers,
     });
-    return response.json();
+    var leagueData = await response.json();
+
+    return new League({key: leagueData.league_key, title: leagueData.title, description: leagueData.description});
   }
 
 }
