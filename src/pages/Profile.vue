@@ -55,7 +55,7 @@ export default {
   </div>
   </div>
 </template>
-<style>
+<style scoped>
 .sign-out-btn{
   background-color: red;
   color: white;
