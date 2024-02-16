@@ -2,18 +2,12 @@
 export default {
   name: "HeroSection",
   computed: {
-    // Define computed properties here, outside the data function
     loggedInUser() {
+      if(this.$store.state.user != null){
+        console.log("Evaluating loggedInUser: " + this.$store.state.user.name);
+      }
       return this.$store.state.user;
     },
-    loggedIn() {
-      if(this.loggedInUser != null){
-        return true;
-      }
-      else{
-        return false;
-      }
-    }
   },
 };
 </script>
@@ -21,11 +15,11 @@ export default {
 <template>
   <div class="hero">
     <div align="right">
-      <router-link v-if="!loggedIn" class="sign-in-button" to="/login">
+      <router-link v-if="(loggedInUser == null)" class="sign-in-button" to="/login">
         <img class="icon" src="../assets/icons/profile.svg" />
         Sign In
       </router-link>
-      <router-link v-else class="sign-in-button" to="/profile">
+      <router-link v-if="(loggedInUser != null)" class="sign-in-button" to="/profile">
         <img class="icon" src="../assets/icons/profile.svg" />
         {{loggedInUser.name}}
       </router-link>

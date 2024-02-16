@@ -6,14 +6,6 @@ export default {
     loggedInUser() {
       return this.$store.state.user;
     },
-    loggedIn() {
-      if(this.loggedInUser != null){
-        return true;
-      }
-      else{
-        return false;
-      }
-    }
   },
 };
 </script>
@@ -30,11 +22,11 @@ export default {
       <h3 class="subheader">Sports Leagues</h3>
       <h3 class="subheader">Recent Game Scores</h3>
     </div>
-    <router-link v-if="!loggedIn" class="sign-in-button" to="/login">
+    <router-link v-if="(loggedInUser == null)" class="sign-in-button" to="/login">
         <img class="icon" src="../assets/icons/profile.svg" />
         Sign In
       </router-link>
-      <router-link v-else class="sign-in-button" to="/profile">
+      <router-link v-if="(loggedInUser != null)" class="sign-in-button" to="/profile">
         <img class="icon" src="../assets/icons/profile.svg" />
         {{loggedInUser.name}}
       </router-link>

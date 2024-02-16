@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       userService: new UserService(),
-      leagues: [], // Moved here to be filled asynchronously
+      leagues: [],
     };
   },
   computed: {
@@ -20,13 +20,13 @@ export default {
   },
   methods: {
     async logout() {
-      this.$store.dispatch("loginUser", null);
+      this.$store.dispatch("loginUser", {name: "logout"});
       this.$router.push("/");
     },
     async deleteUser() {
       try {
         this.userService.deleteUser(this.loggedInUser.user_id);
-        this.$store.dispatch("loginUser", null);
+      this.$store.dispatch("loginUser", {name: "logout"});
         this.$router.push("/");
       } catch (error) {
         console.error("Deletion error:", error);

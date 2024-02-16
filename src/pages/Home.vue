@@ -69,6 +69,17 @@ export default {
     this.fetchUpcoming();
     this.fetchRecentScores();
   },
+  watch: {
+    '$route': {
+      immediate: true,
+      handler() {
+        // React to route changes here
+        if(this.$store.state.user != null && this.$store.state.user.name == "logout"){
+          this.$store.dispatch("loginUser", null);
+        }
+      }
+    }
+  }
 };
 </script>
 
