@@ -1,8 +1,13 @@
 <script>
 import UserService from "../services/UserService"; // Adjust the import path as necessary
+import { useLogger } from "vue-logger-plugin"; // Import the logger plugin
 
 export default {
   name: "LoginPage",
+  setup() {
+    const log = useLogger();
+    log.info("Login page loaded");
+  },
   data() {
     return {
       email: "",
@@ -20,6 +25,7 @@ export default {
   },
   methods: {
     async login() {
+      this.$log.log("Entering Login Method");
       try {
         const response = await this.userService.loginUser(
           this.email,
@@ -37,6 +43,7 @@ export default {
         console.error("Login error:", error);
         this.loginError = true;
       }
+      this.$log.log("Exiting Login Method");
     },
   },
 };

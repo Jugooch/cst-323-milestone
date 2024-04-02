@@ -31,6 +31,9 @@
     },
     computed: {
       formattedDate() {
+            // log test
+            this.$log.log("in formattedDate");
+            // --------------------------------
             const date = new Date(this.game.commence_time);
             const optionsDate = { year: '2-digit', month: '2-digit', day: '2-digit' };
             const optionsTime = { hour: 'numeric', minute: '2-digit', hour12: true };

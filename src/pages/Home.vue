@@ -6,9 +6,14 @@ import OddsService from '@/services/OddsService'
 import GameCard from '@/components/GameCard.vue';
 import GameScoreCard from '@/components/GameScoreCard.vue';
 import Footer from '@/components/Footer.vue';
+import { useLogger } from 'vue-logger-plugin';
 
 export default {
   name: 'HomePage',
+  setup() {
+    const log = useLogger();
+    log.info("Home page loaded");
+  },
   components: {
     HeaderSection,
     SearchButton,
@@ -40,6 +45,7 @@ export default {
   },
   methods: {
     async fetchLeagues() {
+      this.$log.log("Entering FetchLeagues Method");
       try {
         const oddsService = new OddsService();
         this.leagues = await oddsService.getLeagues();
