@@ -1,9 +1,14 @@
 <script>
 import UserService from "../services/UserService";
 import LeaguePill from "../components/LeaguePill.vue";
+import { useLogger } from "vue-logger-plugin";
 
 export default {
   name: "ProfilePage",
+  setup() {
+    const log = useLogger();
+    log.info("Profile page loaded");
+  },
   components: {
     LeaguePill,
   },
@@ -20,10 +25,14 @@ export default {
   },
   methods: {
     async logout() {
+      this.$log.log("Entering Logout Method");
       this.$store.dispatch("loginUser", {name: "logout"});
       this.$router.push("/");
+      this.$log.log("Exiting Logout Method");
     },
+
     async deleteUser() {
+      this.$log.log("Entering DeleteUser Method");
       try {
         this.userService.deleteUser(this.loggedInUser.user_id);
       this.$store.dispatch("loginUser", {name: "logout"});
@@ -32,8 +41,10 @@ export default {
         console.error("Deletion error:", error);
         alert("Deletion failed.");
       }
+      this.$log.log("Exiting DeleteUser Method");
     },
     async fetchLeagues() {
+      this.$log.log("Entering FetchLeagues Method");
       try {
         const favoriteLeagues = await this.userService.getFavoriteLeagues(
           this.loggedInUser.user_id
@@ -46,6 +57,7 @@ export default {
         console.error("League fetch error:", error);
         this.leagues = [];
       }
+      this.$log.log("Exiting FetchLeagues Method");
     },
   },
   mounted() {

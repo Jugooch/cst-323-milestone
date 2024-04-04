@@ -1,7 +1,9 @@
 import { createApp } from 'vue';
 import { createStore } from 'vuex';
+import { createLogger } from 'vue-logger-plugin';
 import App from './App.vue';
 import router from './router'; // Assuming you have a router setup
+
 
 // Create a new store instance.
 const store = createStore({
@@ -30,6 +32,8 @@ app.use(store);
 
 // Use the router
 app.use(router);
+
+app.use(createLogger());
 
 // Now mount the app
 app.mount('#app');

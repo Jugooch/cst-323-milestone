@@ -1,8 +1,13 @@
 <script>
 import UserService from "../services/UserService";
+import { useLogger } from "vue-logger-plugin";
 
 export default {
   name: "RegisterPage",
+  setup() {
+    const log = useLogger();
+    log.info("Register page loaded");
+  },
   data() {
     return {
       firstName: "",
@@ -15,6 +20,7 @@ export default {
   },
   methods: {
     async registerUser() {
+      this.$log.log("Entering RegisterUser Method");
       if (this.password !== this.confirmPassword) {
         alert("Passwords do not match.");
         return;
@@ -43,6 +49,7 @@ export default {
         console.error("Registration error:", error);
         alert("Registration failed.");
       }
+      this.$log.log("Exiting RegisterUser Method");
     },
   },
 };
