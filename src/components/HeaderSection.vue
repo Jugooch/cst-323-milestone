@@ -27,7 +27,7 @@ export default {
     <div class="header">
       <img src="../assets/logo.svg" alt="Logo" class="logo" />
       <h1 class="main-title">ODDSPOT</h1>
-      <h2 class="subheader">SPORTS ODDS HUB</h2>
+      <h2 class="subheader">SPORT ODDS HUB</h2>
     </div>
     <div class="headerItems">
       <div class="headerItem">
